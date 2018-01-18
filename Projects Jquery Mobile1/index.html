@@ -1,0 +1,191 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="calendar.css" rel="stylesheet" />
+    <script src="jQuery/jQuery-1.12.4.min.js"></script>
+    <script src="jquery.mobile.rtl/js/rtl.jquery.mobile-1.4.0.js"></script>
+    <link href="jquery.mobile.rtl/css/themes/default/rtl.jquery.mobile-1.4.0.css" rel="stylesheet" />
+    <script src="Scripts/logic.js"></script>
+    <script src="Scripts/events.js"></script>
+    <script src="Scripts/ajax.js"></script>
+ 
+</head>
+<body dir="rtl">
+    <!--General Popup-->
+    <div id="popup" data-theme="a" data-role="popup">
+        <div class="ui-content" role="main">
+            <p id="popup-text"></p>
+        </div>
+    </div>
+    <!--Login-->
+    <div data-role="page" id="login">
+        <div data-role="header">
+            <h2>Alternative</h2>
+        </div>
+
+       
+        <div class="ui-content" role="main">
+            <h2>יש לבצע התחברות למערכת</h2>
+            <input type="text" name="UserID" id="lpUserID" placeholder="ת.ז" value="">
+            <input type="password" name="pass" id="lpTxtPass" placeholder="סיסמא" value="">
+            <input type="button" id="lpBtnLogin" value="שלח" />
+            <p>במידה ואין ברשותך חשבון פעיל ניתן ל<a href="#register" data-transition="slideup">הירשם</a></p>
+            <div class="ui-grid-a">
+                <div class="ui-block-a">
+                    <a href="#" id="exit-button" class="ui-btn ui-btn-b ui-shadow ui-corner-all">Exit</a>
+                </div>
+                <div class="ui-block-b">
+                    <a href="#" id="cancel-button" class="ui-btn ui-shadow ui-corner-all">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Register-->
+    <div data-role="page" id="register">
+        <div data-role="header">
+            <a href="#" class="ui-btn ui-btn-left ui-icon-arrow-l ui-btn-icon-notext ui-corner-all" data-rel="back"></a>
+            <h2>Alternative</h2>
+        </div>
+        <div class="ui-content" role="main">
+            <h2>טופס הרשמה למערכת</h2>
+            <div id="errorid">*יש למלא ת.ז תקינה 
+            </div>
+            <input type="number" id="userid" placeholder="ת.ז"/>
+            <input type="text" id="newName" placeholder="שם פרטי" />
+            <input type="text" id="newFamily" placeholder="שם משפחה"  />
+            <div id="errorphone">*יש למלא פלאפון תקין</div>
+            <input type="number" id="PhoneNumber" placeholder="פלאפון"  />
+            <div id="erroremail">
+                *יש למלא איימל תקין
+            </div>
+            <input type="email" id="Email" placeholder="איימל"  />
+            <input type="password" id="newPass" placeholder="סיסמא"  />
+
+
+
+            <div class="ui-grid-solo">
+                <div class="ui-block-a">
+                    <button type="button" id="lpBtnSignup" data-theme="b">שלח</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--myturns-->
+    <div data-role="page" id="turns">
+        <div data-role="header">
+            <a href="#" class="ui-btn ui-btn-left ui-icon-arrow-l ui-btn-icon-notext ui-corner-all" data-rel="back"></a>
+            <input type="button" class="ui-btn ui-btn-right ui-icon-delete ui-btn-icon-notext ui-corner-all logout"  value="התנתק" />
+            <h2 id="user_name">Alternative</h2>
+        </div>
+        <div class="ui-content" role="main">
+            <h2>התורים שלי</h2>
+            <h3>אין כרגע תורים מוזמנים</h3>
+            <h2>זימון תורים</h2>
+            <div id="showNames"></div>
+
+        </div>
+    </div>
+
+    <!--ShowDescriptionofspa-->
+    <div data-role="page" id="ShowDescriptionofSpa">
+        <div data-role="header">
+            <a href="#" class="ui-btn ui-btn-left ui-icon-arrow-l ui-btn-icon-notext ui-corner-all" data-rel="back"></a>
+            <input type="button" class="ui-btn ui-btn-right ui-icon-delete ui-btn-icon-notext ui-corner-all logout" value="התנתק" />
+
+
+            <h2>Alternative</h2>
+        </div>
+        <div class="ui-content" role="main">
+            <h1>פרטים על העסק</h1>
+            
+            <h2>שם העסק:</h2><div id="nameofspa"></div>
+            <h2>פרטים:</h2><div id="spadescription"></div>
+            <h2>כתובת:</h2><div id="location"></div>
+            <h2>מספר טלפון:</h2><div id="phone"></div>
+            <h2>חוות דעת</h2><div id="comments">אין כרגע חוות דעת</div>
+            <button  class="ju">להזמנת תור לחצו כאן </button>
+
+
+        </div>
+    </div>
+    <!--Date&Time-->
+    <div data-role="page" id="createAppointment">
+        <div data-role="header">
+            <a href="#" class="ui-btn ui-btn-left ui-icon-arrow-l ui-btn-icon-notext ui-corner-all" data-rel="back"></a>
+            <input type="button" class="ui-btn ui-btn-right ui-icon-delete ui-btn-icon-notext ui-corner-all logout"  value="התנתק" />
+
+            <h2>Alternative</h2>
+        </div>
+     
+
+        <div id="calendar-wrap">
+            <!--<header>
+                <h1>December 2017</h1>
+            </header>-->
+            <div id="calendar">
+                <!--<ul class="weekdays">
+                    <li>Sunday</li>
+                    <li>Monday</li>
+                    <li>Tuesday</li>
+                    <li>Wednesday</li>
+                    <li>Thursday</li>
+                    <li>Friday</li>
+                    <li>Saturday</li>
+                </ul>-->
+
+                <!-- Days from previous month -->
+              
+                
+                <ul id="scheduleList" class="days"> 
+                </ul>
+                <button id="5days">הצג את שבוע הבא</button>
+
+            </div><!-- /. calendar -->
+        </div><!-- /. wrap -->
+
+        </div>
+    <!--message turn after choose date and time-->
+
+    <div data-role="page" id="messageturn">
+        <div data-role="header">
+            <input type="button" class="ui-btn ui-btn-right ui-icon-delete ui-btn-icon-notext ui-corner-all logout" id="" value="התנתק" />
+
+            <h2>Alternative</h2>
+        </div>
+        <h1> חוות דעת</h1>
+        <h2>ספא כפר הים</h2>
+        <textarea placeholder="כאן ניתן לרשום חוות דעת" rows="100" cols="200"  style="width:500px";></textarea>
+        <button>שלח חוות דעת</button><a href="">חזרה לעמוד הבית</a>
+       <h1>התור נקבע בהצלחה</h1>
+       <!--<h2>בתאריך ושעה</h2><p>22/11/2017 בשעה:13:00</p>-->
+        <h2>בתאריך:22/11/2017</h2>
+        <h2>בשעה 13:00</h2>
+        <!--<div id="dateandtime">
+        </div>-->
+        <p>מעוניין לכתוב חוות דעת אודות הטיפול שקבלת<a href="">לחצו כאן</a></p>
+        <button>חזרה לעמוד הבית</button>
+        
+
+    </div>
+    <!--pageofmetapel-->
+    <div data-role="page" id="pageofmetapel">
+        <div data-role="header">
+            <a href="#" class="ui-btn ui-btn-left ui-icon-arrow-l ui-btn-icon-notext ui-corner-all" data-rel="back"></a>
+            <input type="button" class="ui-btn ui-btn-right ui-icon-delete ui-btn-icon-notext ui-corner-all logout" id="" value="התנתק" />
+
+            <h2>Alternative</h2>
+        </div>
+        <div class="ui-content" role="main">
+           <h1>מטפל</h1>
+
+        </div>
+    </div>
+
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+</body>
+</html>
